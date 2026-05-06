@@ -1,0 +1,31 @@
+FullName,ID,Age,Gender,Diagnosis,SurgicalStatus,ClinicalSummary
+James Miller,128475039,72,Male,Displaced femoral neck fracture (ICD9 820.0),Cleared,Patient fell at home. Stable vitals. X-ray confirms displaced fracture. Scheduled for hemiarthroplasty tomorrow morning.
+Sarah Jenkins,938475621,81,Female,Intertrochanteric hip fracture (ICD9 820.2),Pending,History of osteoporosis. Patient currently on blood thinners; surgery delayed 48 hours for clearance. Pain managed with IV meds.
+Robert Chen,445928374,68,Male,Subtrochanteric fracture (ICD9 820.8),Cleared,High-energy trauma from cycling accident. No head injury detected. Cleared by cardiology for immediate intramedullary nailing.
+Maria Garcia,556283741,75,Female,Closed transcervical fracture (ICD9 820.02),Pending,Alert and oriented. Fracture is non-displaced but requires internal fixation to prevent further injury. Mobility is severely restricted.
+William Thompson,229384756,84,Male,Open fracture of femoral neck (ICD9 820.1),Pending,Open wound present. Started on prophylactic antibiotics. Awaiting plastic surgery consultation for skin flap viability before orthopedic intervention.
+Linda Pires,883746512,79,Female,Trochanteric fracture (ICD9 820.21),Cleared,Chronic COPD patient. Anesthesia has approved spinal block. Patient is fasting and prepared for surgery at 08:00.
+David Wright,112233445,70,Male,Hip fracture NOS (ICD9 820.9),Pending,Mechanism of injury unclear. Patient presents with slight confusion. Awaiting CT scan to rule out secondary fractures before setting surgical date.
+Elizabeth Moore,667788990,88,Female,Peritrochanteric fracture (ICD9 820.20),Cleared,Frail elderly patient. Family has consented to surgery. Focus is on rapid mobilization to prevent pneumonia post-op.
+Richard Lee,334455667,65,Male,Base of neck fracture (ICD9 820.03),Cleared,Active lifestyle. Minimal comorbidities. Standard fixation planned. Patient requests physical therapy to begin immediately after surgery.
+Patricia Hall,998877665,91,Female,Midcervical fracture (ICD9 820.01),Pending,Advanced age. Blood pressure is currently fluctuating. Surgical team monitoring for stabilization before moving to the OR.
+Joseph Young,776655443,73,Male,Displaced femoral neck fracture (ICD9 820.0),Cleared,NPO since midnight. All pre-op labs are within normal limits. Expected operative time is 90 minutes.
+Susan Adams,123987456,77,Female,Intertrochanteric hip fracture (ICD9 820.2),Cleared,Fell while gardening. Patient is highly motivated for recovery. All hardware is on-site and ready for the morning shift.
+Charles Baker,456123789,82,Male,Subtrochanteric fracture (ICD9 820.8),Pending,Elevated white blood cell count noted. Checking for underlying infection before proceeding with implant surgery.
+Karen Nelson,789456123,69,Female,Closed transcervical fracture (ICD9 820.02),Cleared,Recent DEXA scan showed low bone density. Plan involves cannulated screws. Patient is hemodynamically stable.
+Thomas Hill,321654987,76,Male,Open fracture of femoral neck (ICD9 820.1),Cleared,Wound debridement completed in ER. No signs of vascular compromise. Proceeding with surgery this afternoon.
+Nancy Scott,987654321,85,Female,Trochanteric fracture (ICD9 820.21),Pending,Patient currently agitated. Psychiatry consult requested to manage delirium before administering general anesthesia.
+Christopher Green,159357486,71,Male,Hip fracture NOS (ICD9 820.9),Cleared,Moderate pain reported. Successfully completed pre-op education. Patient has a strong support system at home for recovery.
+Sandra Adams,753159486,80,Female,Peritrochanteric fracture (ICD9 820.20),Cleared,Uncomplicated fracture pattern. Heart and lungs are clear. Surgery scheduled for the second slot in OR 4.
+Matthew King,456789123,67,Male,Base of neck fracture (ICD9 820.03),Pending,EKG showed a minor arrhythmia. Awaiting formal clearance from the cardiology department before scheduling.
+Donna Campbell,147258369,83,Female,Midcervical fracture (ICD9 820.01),Cleared,History of diabetes but currently well-managed. Glucose levels are stable. Prepared for total hip arthroplasty.
+Daniel Evans,369258147,74,Male,Displaced femoral neck fracture (ICD9 820.0),Pending,Slight fever noted this morning. Repeating blood cultures. Surgery is on hold until the cause is determined.
+Barbara Turner,258147369,78,Female,Intertrochanteric hip fracture (ICD9 820.2),Cleared,No allergies reported. Patient understands the risks and benefits. Standard surgical protocol to be followed.
+Paul Parker,951753456,86,Male,Subtrochanteric fracture (ICD9 820.8),Cleared,Previous hardware from a knee surgery is present. Surgical plan adjusted for proximity. Patient is stable.
+Margaret Collins,852963741,66,Female,Closed transcervical fracture (ICD9 820.02),Pending,Patient is smoker; counseling provided regarding healing risks. Awaiting chest X-ray results for final clearance.
+Mark Edwards,159753486,89,Male,Open fracture of femoral neck (ICD9 820.1),Cleared,Minor skin lacerations cleaned. Patient is surprisingly mobile despite injury. Scheduled for the first trauma list.
+Betty Stewart,753951486,72,Female,Trochanteric fracture (ICD9 820.21),Cleared,Normal labs. Patient is calm and cooperative. Plan for hardware fixation followed by early weight-bearing therapy.
+Steven Morris,147852369,81,Male,Hip fracture NOS (ICD9 820.9),Pending,Renal function is borderline. Nephrology reviewing medication list to ensure surgical safety and post-op care.
+Lisa Rogers,369852147,75,Female,Peritrochanteric fracture (ICD9 820.20),Cleared,Well-nourished and active prior to fall. Cardiac clearance obtained. Will proceed with surgery as soon as OR is available.
+Kenneth Reed,258741369,84,Male,Base of neck fracture (ICD9 820.03),Cleared,Cognitively intact. No chronic pain history. Aiming for discharge to a rehab facility within five days.
+Helen Cook,951357486,79,Female,Midcervical fracture (ICD9 820.01),Pending,Low hemoglobin level. Considering a pre-operative transfusion to optimize the patient for surgery.
