@@ -1,0 +1,27 @@
+<Window x:Class="PatientDisplay.Views.WidgetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:PatientDisplay.ViewModels"
+        Title="Project M Widget"
+        Icon="/Assets/project_m_logo.png"
+        Width="80" Height="80"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        ShowInTaskbar="False">
+
+    <Grid>
+        <Image Source="/Assets/project_m_logo.png"
+               Width="56" Height="56"
+               Cursor="Hand"
+               RenderOptions.BitmapScalingMode="HighQuality"
+               ToolTip="Project M – Click to toggle dashboard">
+            <Image.Effect>
+                <DropShadowEffect BlurRadius="12" ShadowDepth="3" Opacity="0.25" Color="#000000" Direction="270"/>
+            </Image.Effect>
+        </Image>
+    </Grid>
+</Window>

@@ -27,10 +27,9 @@ async def get_patients(
     
     if search:
         search_lower = search.lower()
-        patient_keys = Patient.model_fields.keys()
         patients_data = [
             p for p in patients_data 
-            if any(search_lower in str(p.get(key, "")).lower() for key in patient_keys)
+            if search_lower in str(p.get("full_name", "")).lower() or search_lower in str(p.get("id", "")).lower()
         ]
         
     patients = [Patient(**p) for p in patients_data]

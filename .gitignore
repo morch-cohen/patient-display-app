@@ -79,3 +79,9 @@ dist/
 build/
 *.egg-info/
 *.egg
+
+# IDEs
+.vs/
+.idea/
+*.user
+*.suo
