@@ -87,6 +87,8 @@
                              Padding="16,10,12,10"
                              Background="Transparent"
                              IsEnabled="{Binding IsSearchEnabled}"
+                             PreviewTextInput="SearchBox_PreviewTextInput"
+                             PreviewKeyDown="SearchBox_PreviewKeyDown"
                              x:Name="SearchBox"/>
                              
                     <!-- Magnifying glass icon overlay -->
@@ -229,6 +231,30 @@
                     <Button Command="{Binding LoadPatientsCommand}" Content="↻ Retry Connection"
                             Style="{StaticResource GhostButton}" HorizontalAlignment="Center"
                             Padding="16,8"/>
+                </StackPanel>
+
+                <!-- No results state -->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsLoading}" Value="False"/>
+                                        <Condition Binding="{Binding IsEmpty}" Value="True"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Text="No patients found" HorizontalAlignment="Center"
+                               Style="{StaticResource BodyText}" FontWeight="SemiBold"
+                               FontSize="14" Foreground="#1A242B"/>
+                    <TextBlock Text="Try adjusting your search query." 
+                               FontSize="11" Foreground="#6B7280" Margin="0,4,0,0"
+                               HorizontalAlignment="Center"/>
                 </StackPanel>
             </Grid>
 

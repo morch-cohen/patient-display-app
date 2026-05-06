@@ -28,6 +28,7 @@ public partial class DashboardWindow : Window
             Height = 640;
         }
 
+        DataObject.AddPastingHandler(SearchBox, SearchBox_Pasting);
         Loaded += async (_, _) => await _viewModel.LoadPatientsAsync();
     }
 
@@ -59,6 +60,44 @@ public partial class DashboardWindow : Window
         Properties.Settings.Default.DashboardHeight = Height;
         Properties.Settings.Default.Save();
         base.OnClosed(e);
+    }
+
+    private void SearchBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        // Allow only letters and digits
+        foreach (char c in e.Text)
+        {
+            if (!char.IsLetterOrDigit(c))
+            {
+                e.Handled = true;
+                break;
+            }
+        }
+    }
+
+    private void SearchBox_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        // Explicitly block space bar
+        if (e.Key == Key.Space)
+        {
+            e.Handled = true;
+        }
+    }
+
+    private void SearchBox_Pasting(object sender, DataObjectPastingEventArgs e)
+    {
+        if (e.DataObject.GetDataPresent(DataFormats.Text))
+        {
+            string text = (string)e.DataObject.GetData(DataFormats.Text);
+            foreach (char c in text)
+            {
+                if (!char.IsLetterOrDigit(c))
+                {
+                    e.CancelCommand();
+                    break;
+                }
+            }
+        }
     }
 
     private void PatientCard_Click(object sender, MouseButtonEventArgs e)
