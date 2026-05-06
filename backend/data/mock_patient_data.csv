@@ -1,7 +1,7 @@
 FullName,ID,Age,Gender,Diagnosis,SurgicalStatus,ClinicalSummary
 James Miller,128475039,72,Male,Displaced femoral neck fracture (ICD9 820.0),Cleared,Patient fell at home. Stable vitals. X-ray confirms displaced fracture. Scheduled for hemiarthroplasty tomorrow morning.
 Sarah Jenkins,938475621,81,Female,Intertrochanteric hip fracture (ICD9 820.2),Pending,History of osteoporosis. Patient currently on blood thinners; surgery delayed 48 hours for clearance. Pain managed with IV meds.
-Robert Chen,445928374,68,Male,Subtrochanteric fracture (ICD9 820.8),Pending,High-energy trauma from cycling accident. No head injury detected. Cleared by cardiology for immediate intramedullary nailing.
+Robert Chen,445928374,68,Male,Subtrochanteric fracture (ICD9 820.8),Cleared,High-energy trauma from cycling accident. No head injury detected. Cleared by cardiology for immediate intramedullary nailing.
 Maria Garcia,556283741,75,Female,Closed transcervical fracture (ICD9 820.02),Pending,Alert and oriented. Fracture is non-displaced but requires internal fixation to prevent further injury. Mobility is severely restricted.
 William Thompson,229384756,84,Male,Open fracture of femoral neck (ICD9 820.1),Pending,Open wound present. Started on prophylactic antibiotics. Awaiting plastic surgery consultation for skin flap viability before orthopedic intervention.
 Linda Pires,883746512,79,Female,Trochanteric fracture (ICD9 820.21),Cleared,Chronic COPD patient. Anesthesia has approved spinal block. Patient is fasting and prepared for surgery at 08:00.

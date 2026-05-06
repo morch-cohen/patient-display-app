@@ -84,19 +84,19 @@
                     <!-- Main text box spanning entire width -->
                     <TextBox Style="{StaticResource SearchBox}"
                              Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
-                             Padding="38,10,12,10"
+                             Padding="16,10,12,10"
                              Background="Transparent"
                              x:Name="SearchBox"/>
                              
                     <!-- Magnifying glass icon overlay -->
                     <TextBlock Text="⌕" FontSize="16" Foreground="#9CA3AF"
-                               VerticalAlignment="Center" Margin="16,0,0,0"
+                               VerticalAlignment="Center" Margin="12,0,0,0"
                                HorizontalAlignment="Left" IsHitTestVisible="False"/>
                                
                     <!-- Placeholder text overlay -->
                     <TextBlock Text="Search by name or ID…"
                                Foreground="#9CA3AF" FontFamily="Segoe UI" FontSize="13"
-                               VerticalAlignment="Center" Margin="40,0,0,0"
+                               VerticalAlignment="Center" Margin="34,0,0,0"
                                HorizontalAlignment="Left" IsHitTestVisible="False"
                                Visibility="{Binding SearchQuery,
                                    Converter={StaticResource StringToVisibilityConverter},

@@ -37,10 +37,10 @@
             </Style>
         </Border.Style>
         <!-- Main Content Panel (No Scrolling) -->
-        <StackPanel Margin="28">
+        <StackPanel Margin="20">
 
                 <!-- Header row -->
-                <Grid Margin="0,0,0,20">
+                <Grid Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
@@ -66,21 +66,19 @@
                     </Button>
                 </Grid>
 
-                <!-- Patient Identity Card -->
-                <Border Style="{StaticResource CardBorder}">
-                    <StackPanel>
+                <!-- Patient Identity -->
+                <StackPanel Margin="0,0,0,20">
+                    <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Patient.FullName}" Style="{StaticResource HeadingLarge}"/>
-                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                            <TextBlock FontFamily="Segoe UI" FontSize="13" Foreground="#6B7280">
-                                <Run Text="{Binding Patient.Age}"/>
-                                <Run Text=" yrs  ·  "/>
-                                <Run Text="{Binding Patient.Gender}"/>
-                            </TextBlock>
-                        </StackPanel>
-                        <TextBlock Text="{Binding Patient.Id}" FontFamily="Segoe UI"
-                                   FontSize="11" Foreground="#9CA3AF" Margin="0,4,0,0"/>
+                        <TextBlock Margin="6,0,0,2" VerticalAlignment="Bottom">
+                            <Run Text="{Binding Patient.Age}" FontWeight="Normal" Foreground="{StaticResource TextSecondaryBrush}" FontSize="18"/>
+                            <Run Text=", " FontWeight="Normal" Foreground="{StaticResource TextSecondaryBrush}" FontSize="18"/>
+                            <Run Text="{Binding Patient.Gender}" FontWeight="Normal" Foreground="{StaticResource TextSecondaryBrush}" FontSize="18"/>
+                        </TextBlock>
                     </StackPanel>
-                </Border>
+                    <TextBlock Text="{Binding Patient.Id}" FontFamily="Segoe UI"
+                               FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                </StackPanel>
 
                 <!-- Diagnosis Card -->
                 <Border Style="{StaticResource CardBorder}">
