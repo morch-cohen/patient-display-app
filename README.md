@@ -10,9 +10,10 @@ The system consists of a **FastAPI backend** managing persistent data and a **WP
 ## 🚀 Getting Started
 
 ### One-Click Launch (Recommended)
-To run the fully packaged application:
-1. Double-click `Launch_App.bat` in the root directory.
-2. This will automatically start the background server and launch the Patient Display widget.
+You do **not** need to download the full repository to run the app. You can simply download the `run` folder and use the standalone executables:
+1. Open the `run` folder.
+2. Double-click `Launch_App.bat`.
+3. This will automatically start the background server and launch the Patient Display widget.
 
 ### Running from Source
 #### Backend (Python)
