@@ -38,6 +38,9 @@ public partial class DashboardViewModel : ObservableObject
     [ObservableProperty]
     private bool _isSearchEnabled = false;
 
+    [ObservableProperty]
+    private bool _isRetrying = false;
+
     private string _searchQuery = string.Empty;
     public string SearchQuery
     {
@@ -74,8 +77,9 @@ public partial class DashboardViewModel : ObservableObject
     public async Task LoadPatientsAsync()
     {
         IsLoading = true;
+        IsRetrying = false; // Start with normal loading state
         ErrorMessage = string.Empty;
-        IsSearchEnabled = false; // Disable search while connecting/loading
+        IsSearchEnabled = false;
 
         int maxRetries = 5;
         int currentTry = 0;
@@ -96,12 +100,9 @@ public partial class DashboardViewModel : ObservableObject
                     ((App)System.Windows.Application.Current).WidgetViewModel.UpdatePendingState(result.Items);
                     
                     IsSearchEnabled = true;
+                    IsRetrying = false;
                     IsLoading = false;
                     return; // Success!
-                }
-                else if (currentTry >= maxRetries)
-                {
-                    ErrorMessage = "Server returned no data after multiple attempts.";
                 }
             }
             catch (Exception ex)
@@ -112,14 +113,16 @@ public partial class DashboardViewModel : ObservableObject
                 }
                 else
                 {
-                    // Wait 1.5s between retries to make it visible to user
+                    // Now we are officially in "Retry" mode
+                    IsRetrying = true;
+                    // Wait 1.5s between retries
                     await Task.Delay(1500);
                 }
             }
         }
 
         IsLoading = false;
-        // Search remains disabled if we failed to connect
+        IsRetrying = false;
     }
 
     [RelayCommand(CanExecute = nameof(CanGoNext))]

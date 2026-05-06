@@ -108,8 +108,20 @@
             <!-- ── PATIENT LIST ── -->
             <Grid Grid.Row="2" Margin="0,12,0,0">
                 <!-- Patient cards -->
-                <ScrollViewer VerticalScrollBarVisibility="Hidden"
-                              Visibility="{Binding IsLoading, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <ScrollViewer.Style>
+                        <Style TargetType="ScrollViewer">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsLoading}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ErrorMessage, Converter={StaticResource StringToBoolConverter}}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ScrollViewer.Style>
                     <ItemsControl ItemsSource="{Binding Patients}" Margin="24,0">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="{x:Type models:PatientModel}">
@@ -176,13 +188,24 @@
                     </ItemsControl>
                 </ScrollViewer>
 
-                <!-- Loading state (Higher Z-index or checked explicitly) -->
+                <!-- Loading state (Contextual message based on IsRetrying) -->
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
                             Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <TextBlock Text="Connecting to server…" HorizontalAlignment="Center"
-                               Style="{StaticResource BodyText}" FontWeight="SemiBold"/>
+                    <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource BodyText}">
+                                <Setter Property="Text" Value="Loading patients…"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsRetrying}" Value="True">
+                                        <Setter Property="Text" Value="Connecting to server…"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <TextBlock Text="Please wait while we establish a connection..." 
-                               FontSize="11" Foreground="#6B7280" Margin="0,4,0,0"/>
+                               FontSize="11" Foreground="#6B7280" Margin="0,4,0,0"
+                               Visibility="{Binding IsRetrying, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </StackPanel>
 
                 <!-- Error state (Only show if NOT loading) -->
