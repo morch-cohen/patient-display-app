@@ -35,6 +35,9 @@ public partial class DashboardViewModel : ObservableObject
     [ObservableProperty]
     private string _errorMessage = string.Empty;
 
+    [ObservableProperty]
+    private bool _isSearchEnabled = false;
+
     private string _searchQuery = string.Empty;
     public string SearchQuery
     {
@@ -72,28 +75,51 @@ public partial class DashboardViewModel : ObservableObject
     {
         IsLoading = true;
         ErrorMessage = string.Empty;
+        IsSearchEnabled = false; // Disable search while connecting/loading
 
-        try
+        int maxRetries = 5;
+        int currentTry = 0;
+
+        while (currentTry < maxRetries)
         {
-            var result = await _apiService.GetPatientsAsync(SearchQuery, CurrentPage, 10);
-            if (result is not null)
+            try
             {
-                Patients = new ObservableCollection<PatientModel>(result.Items);
-                TotalPages = result.TotalPages;
-                TotalItems = result.TotalItems;
-                CurrentPage = result.CurrentPage;
+                currentTry++;
+                var result = await _apiService.GetPatientsAsync(SearchQuery, CurrentPage, 10);
+                if (result is not null)
+                {
+                    Patients = new ObservableCollection<PatientModel>(result.Items);
+                    TotalPages = result.TotalPages;
+                    TotalItems = result.TotalItems;
+                    CurrentPage = result.CurrentPage;
 
-                ((App)System.Windows.Application.Current).WidgetViewModel.UpdatePendingState(result.Items);
+                    ((App)System.Windows.Application.Current).WidgetViewModel.UpdatePendingState(result.Items);
+                    
+                    IsSearchEnabled = true;
+                    IsLoading = false;
+                    return; // Success!
+                }
+                else if (currentTry >= maxRetries)
+                {
+                    ErrorMessage = "Server returned no data after multiple attempts.";
+                }
+            }
+            catch (Exception ex)
+            {
+                if (currentTry >= maxRetries)
+                {
+                    ErrorMessage = $"Connection failed: {ex.Message}";
+                }
+                else
+                {
+                    // Wait 1.5s between retries to make it visible to user
+                    await Task.Delay(1500);
+                }
             }
         }
-        catch (Exception ex)
-        {
-            ErrorMessage = $"Failed to load patients: {ex.Message}";
-        }
-        finally
-        {
-            IsLoading = false;
-        }
+
+        IsLoading = false;
+        // Search remains disabled if we failed to connect
     }
 
     [RelayCommand(CanExecute = nameof(CanGoNext))]

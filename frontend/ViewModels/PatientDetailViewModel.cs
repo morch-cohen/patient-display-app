@@ -72,27 +72,41 @@ public partial class PatientDetailViewModel : ObservableObject
         SaveError = string.Empty;
         SaveSuccess = false;
 
-        try
+        int maxRetries = 5;
+        int currentTry = 0;
+
+        while (currentTry < maxRetries)
         {
-            var updated = await _apiService.PatchPatientStatusAsync(Patient.Id, SelectedStatus);
-            if (updated is not null)
+            try
             {
-                // Update the existing reference so DashboardWindow observes the change
-                Patient.SurgicalStatus = updated.SurgicalStatus;
-                SelectedStatus = updated.SurgicalStatus;
-                SaveSuccess = true;
-                
-                // Re-evaluate CanExecute after successful save
-                SaveStatusCommand.NotifyCanExecuteChanged();
+                currentTry++;
+                var updated = await _apiService.PatchPatientStatusAsync(Patient.Id, SelectedStatus);
+                if (updated is not null)
+                {
+                    // Update the existing reference so DashboardWindow observes the change
+                    Patient.SurgicalStatus = updated.SurgicalStatus;
+                    SelectedStatus = updated.SurgicalStatus;
+                    SaveSuccess = true;
+                    
+                    // Re-evaluate CanExecute after successful save
+                    SaveStatusCommand.NotifyCanExecuteChanged();
+                    IsSaving = false;
+                    return; // Success!
+                }
+            }
+            catch (Exception ex)
+            {
+                if (currentTry >= maxRetries)
+                {
+                    SaveError = $"Failed to save after {maxRetries} attempts: {ex.Message}";
+                }
+                else
+                {
+                    await Task.Delay(1000);
+                }
             }
         }
-        catch (Exception ex)
-        {
-            SaveError = $"Save failed: {ex.Message}";
-        }
-        finally
-        {
-            IsSaving = false;
-        }
+
+        IsSaving = false;
     }
 }

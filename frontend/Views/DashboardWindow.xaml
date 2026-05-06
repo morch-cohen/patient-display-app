@@ -86,6 +86,7 @@
                              Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
                              Padding="16,10,12,10"
                              Background="Transparent"
+                             IsEnabled="{Binding IsSearchEnabled}"
                              x:Name="SearchBox"/>
                              
                     <!-- Magnifying glass icon overlay -->
@@ -106,17 +107,6 @@
 
             <!-- ── PATIENT LIST ── -->
             <Grid Grid.Row="2" Margin="0,12,0,0">
-                <!-- Loading state -->
-                <TextBlock Text="Loading patients…" HorizontalAlignment="Center"
-                           VerticalAlignment="Center" Style="{StaticResource BodyText}"
-                           Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}"/>
-
-                <!-- Error state -->
-                <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Center"
-                           VerticalAlignment="Center" Foreground="#FF2D55" FontFamily="Segoe UI"
-                           FontSize="13" TextWrapping="Wrap" Margin="24,0"
-                           Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}"/>
-
                 <!-- Patient cards -->
                 <ScrollViewer VerticalScrollBarVisibility="Hidden"
                               Visibility="{Binding IsLoading, Converter={StaticResource InverseBoolToVisibilityConverter}}">
@@ -185,6 +175,38 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
+
+                <!-- Loading state (Higher Z-index or checked explicitly) -->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+                            Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock Text="Connecting to server…" HorizontalAlignment="Center"
+                               Style="{StaticResource BodyText}" FontWeight="SemiBold"/>
+                    <TextBlock Text="Please wait while we establish a connection..." 
+                               FontSize="11" Foreground="#6B7280" Margin="0,4,0,0"/>
+                </StackPanel>
+
+                <!-- Error state (Only show if NOT loading) -->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsLoading}" Value="False"/>
+                                        <Condition Binding="{Binding ErrorMessage, Converter={StaticResource StringToBoolConverter}}" Value="True"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Text="{Binding ErrorMessage}" Foreground="#FF2D55" FontFamily="Segoe UI"
+                               FontSize="13" TextWrapping="Wrap" Margin="24,0,24,12" TextAlignment="Center"/>
+                    <Button Command="{Binding LoadPatientsCommand}" Content="↻ Retry Connection"
+                            Style="{StaticResource GhostButton}" HorizontalAlignment="Center"
+                            Padding="16,8"/>
+                </StackPanel>
             </Grid>
 
             <!-- ── PAGINATION ── -->
