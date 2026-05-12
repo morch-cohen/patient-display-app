@@ -64,10 +64,10 @@ public partial class DashboardWindow : Window
 
     private void SearchBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
     {
-        // Allow only letters and digits
+        // Allow letters, digits, and spaces
         foreach (char c in e.Text)
         {
-            if (!char.IsLetterOrDigit(c))
+            if (!char.IsLetterOrDigit(c) && c != ' ')
             {
                 e.Handled = true;
                 break;
@@ -75,14 +75,6 @@ public partial class DashboardWindow : Window
         }
     }
 
-    private void SearchBox_PreviewKeyDown(object sender, KeyEventArgs e)
-    {
-        // Explicitly block space bar
-        if (e.Key == Key.Space)
-        {
-            e.Handled = true;
-        }
-    }
 
     private void SearchBox_Pasting(object sender, DataObjectPastingEventArgs e)
     {
@@ -91,7 +83,7 @@ public partial class DashboardWindow : Window
             string text = (string)e.DataObject.GetData(DataFormats.Text);
             foreach (char c in text)
             {
-                if (!char.IsLetterOrDigit(c))
+                if (!char.IsLetterOrDigit(c) && c != ' ')
                 {
                     e.CancelCommand();
                     break;

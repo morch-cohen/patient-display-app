@@ -88,7 +88,6 @@
                              Background="Transparent"
                              IsEnabled="{Binding IsSearchEnabled}"
                              PreviewTextInput="SearchBox_PreviewTextInput"
-                             PreviewKeyDown="SearchBox_PreviewKeyDown"
                              x:Name="SearchBox"/>
                              
                     <!-- Magnifying glass icon overlay -->
